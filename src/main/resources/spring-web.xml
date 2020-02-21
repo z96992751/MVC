@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+    <!-- 映射器 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> -->
+	<!-- 适配器 -->
+	<!-- <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/> -->
+	<!-- 自定义处理器 -->
+	<!-- <bean name="/a,/b" class="com.accp.t1.handler.MyHandler"></bean> -->
+	
+	<!-- 组件扫描仪 -->
+	<context:component-scan base-package="com.accp.t1.handler"/>
+	<!-- 一键式 -->
+	<mvc:annotation-driven/>
+	
+	<!-- 忽略静态资源处理 [非常重要]-->
+	<mvc:default-servlet-handler/>
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 启动元注解方式处理请求与响应,并设置fastjson为序列化/反序列化的消息处理器 -->
+	<!-- <mvc:annotation-driven>
+		<mvc:message-converters
+			register-defaults="true">
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+				<property name="features">
+					<list>
+						<value>WriteMapNullValue</value>
+						<value>WriteNullNumberAsZero</value>
+						<value>WriteNullStringAsEmpty</value>
+						<value>WriteDateUseDateFormat</value>
+						<value>WriteEnumUsingToString</value>
+						<value>QuoteFieldNames</value>
+						非常重要，解决重复引用对象异常($ref)
+						<value>DisableCircularReferenceDetect</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven> -->
+
+	<!-- AJAX中JSON跨域处理 -->
+	<!-- <mvc:cors>
+		<mvc:mapping path="/**" allowed-origins="*"
+			allow-credentials="true" max-age="12000" allowed-methods="GET,POST,*" />
+	</mvc:cors> -->
+</beans>
